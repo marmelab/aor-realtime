@@ -1,0 +1,59 @@
+{
+  "name": "aor-realtime",
+  "version": "0.0.1",
+  "description": "A saga enabling realtime updates for Admin-on-rest",
+  "main": "./lib/index.js",
+  "repository": "https://github.com/marmelab/aor-realtime.git",
+  "authors": [
+    "Gildas Garcia"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "make build",
+    "clean": "make clean",
+    "format": "make format",
+    "precommit": "lint-staged",
+    "prepublish": "make build",
+    "test": "make test",
+    "watch-test": "make watch-test"
+  },
+    "lint-staged": {
+    "*.js": [
+      "eslint --fix ./src",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "admin-on-rest": "~1.0.1",
+    "babel-cli": "~6.24.1",
+    "babel-core": "~6.24.1",
+    "babel-eslint": "7.2.3",
+    "babel-plugin-istanbul": "~4.1.3",
+    "babel-preset-es2015": "~6.24.1",
+    "babel-preset-stage-0": "~6.24.1",
+    "eslint": "~3.19.0",
+    "eslint-config-prettier": "~2.0.0",
+    "eslint-plugin-import": "~2.2.0",
+    "eslint-plugin-prettier": "~2.0.1",
+    "expect": "~1.20.2",
+    "husky": "~0.13.3",
+    "istanbul-cobertura-badger": "~1.3.0",
+    "lint-staged": "~3.4.1",
+    "mocha": "~3.3.0",
+    "nyc": "~10.3.2",
+    "prettier": "~1.3.1"
+  },
+  "dependencies": {
+    "babel-plugin-transform-runtime": "~6.23.0",
+    "lodash.merge": "~4.6.0",
+    "lodash.omit": "~4.5.0",
+    "lodash.pick": "~4.4.0",
+    "lodash.pickby": "~4.6.0",
+    "react-router": "~4.1.1",
+    "react-router-redux": "~5.0.0-alpha.5",
+    "redux-saga": "~0.14.6"
+  },
+  "peerDependencies": {
+    "admin-on-rest": "~0.9.1"
+  }
+}
