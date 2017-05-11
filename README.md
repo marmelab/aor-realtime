@@ -41,14 +41,15 @@ The `subscribe` method must return a `subscription` object. The `subscription` o
 Here is a very naive example using an interval to fetch data every 5 seconds:
 
 ```js
+// In createRealtimeSaga.js
 import realtimeSaga from 'aor-realtime';
 
-const observeRequest = (fetchType, resource, params) => {
+const observeRequest = restClient => (type, resource, params) => {
     // Use your apollo client methods here or sockets or whatever else including the following very naive polling mechanism
     return {
         subscribe(observer) {
             const intervalId = setInterval(() => {
-                fetchData(fetchType, resource, params)
+                restClient(type, resource, params)
                     .then(results => observer.next(results)) // New data received, notify the observer
                     .catch(error => observer.error(error)); // Ouch, an error occured, notify the observer
             }, 5000);
@@ -67,7 +68,7 @@ const observeRequest = (fetchType, resource, params) => {
     };
 };
 
-const customSaga = realtimeSaga(observeRequest);
+export default restClient => realtimeSaga(observeRequest(restClient));
 ```
 
 For a more realistic usage example, please refer to the realtime saga provided by the [aor-simple-graphql-client](https://github.com/marmelab/aor-simple-graphql-client).

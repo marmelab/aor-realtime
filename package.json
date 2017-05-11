@@ -17,7 +17,7 @@
     "test": "make test",
     "watch-test": "make watch-test"
   },
-    "lint-staged": {
+  "lint-staged": {
     "*.js": [
       "eslint --fix ./src",
       "git add"
