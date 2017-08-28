@@ -29,7 +29,8 @@ This function will be called with the following parameters:
   - for `CRUD_GET_LIST`: `{ pagination: { page: {int} , perPage: {int} }, sort: { field: {string}, order: {string} }, filter: {Object} }`
   - for `CRUD_GET_ONE`: `{ id: {mixed} }`
 
-This function must return an object with a `subscribe` method which will be called with an `observer`.
+This function must return an object with a `subscribe` method which will be called with an `observer`. If it returns `null`, the query won't be updated automatically. This allows you to decide which query should be updated in real time.
+
 The `observer` have the following methods:
 
 - `next(data)`: Call this method each time new data is received so that the Admin-on-rest views are updated.
@@ -45,6 +46,9 @@ Here is a very naive example using an interval to fetch data every 5 seconds:
 import realtimeSaga from 'aor-realtime';
 
 const observeRequest = restClient => (type, resource, params) => {
+    // Filtering so that only posts are updated in real time
+    if (resource !== 'posts') return;
+
     // Use your apollo client methods here or sockets or whatever else including the following very naive polling mechanism
     return {
         subscribe(observer) {

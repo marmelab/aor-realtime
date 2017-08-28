@@ -24,7 +24,7 @@
     ]
   },
   "devDependencies": {
-    "admin-on-rest": "~1.0.1",
+    "admin-on-rest": "^1.0.1",
     "babel-cli": "~6.24.1",
     "babel-core": "~6.24.1",
     "babel-eslint": "7.2.3",
@@ -54,6 +54,6 @@
     "redux-saga": "~0.14.6"
   },
   "peerDependencies": {
-    "admin-on-rest": "~0.9.1"
+    "admin-on-rest": "^1.0.1"
   }
 }
