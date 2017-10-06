@@ -9,7 +9,10 @@ describe('createObserverChannel', () => {
         subscribe: createSpy().andReturn({ unsubscribe }),
     };
 
-    const unsubscribeWatcher = createSubscribeFactory(queryObserver)(watcher, 'the emitter');
+    const unsubscribeWatcher = createSubscribeFactory(queryObserver)(
+        watcher,
+        'the emitter',
+    );
     it('calls the queryObserver with the specified emitter', () => {
         expect(queryObserver).toHaveBeenCalledWith(emitter);
     });

@@ -16,7 +16,6 @@
     ],
     "rules": {
         "prettier/prettier": ["error", {
-            "printWidth": 120,
             "singleQuote": true,
             "tabWidth": 4,
             "trailingComma": "all"
