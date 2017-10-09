@@ -1,6 +1,6 @@
 {
   "name": "aor-realtime",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A saga enabling realtime updates for Admin-on-rest",
   "main": "./lib/index.js",
   "repository": "https://github.com/marmelab/aor-realtime.git",
