@@ -2,7 +2,7 @@
     "parser": "babel-eslint",
     "env": {
         "es6": true,
-        "mocha": true,
+        "jest": true,
         "node": true
     },
     "extends": [
@@ -16,7 +16,6 @@
     ],
     "rules": {
         "prettier/prettier": ["error", {
-            "printWidth": 120,
             "singleQuote": true,
             "tabWidth": 4,
             "trailingComma": "all"

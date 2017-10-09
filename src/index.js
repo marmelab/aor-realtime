@@ -1,6 +1,11 @@
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { takeLatest, call, put, take, cancelled } from 'redux-saga/effects';
-import { CRUD_GET_LIST, CRUD_GET_ONE, FETCH_START, FETCH_END } from 'admin-on-rest';
+import {
+    CRUD_GET_LIST,
+    CRUD_GET_ONE,
+    FETCH_START,
+    FETCH_END,
+} from 'admin-on-rest';
 import omit from 'lodash.omit';
 
 import buildAorAction from './buildAorAction';
@@ -8,7 +13,10 @@ import createObserverChannel from './createObserverChannel';
 
 export const watchCrudActionsFactory = observeQuery =>
     function* watchCrudActions(action) {
-        const { payload: params, meta: { fetch: fetchType, resource } } = action;
+        const {
+            payload: params,
+            meta: { fetch: fetchType, resource },
+        } = action;
         const observer = yield call(observeQuery, fetchType, resource, params);
 
         if (!observer) return;
@@ -21,11 +29,19 @@ export const watchCrudActionsFactory = observeQuery =>
                 const { type, payload, meta } = action;
 
                 yield [
-                    put({ type: `${type}_LOADING`, payload, meta: omit(meta, 'fetch') }),
+                    put({
+                        type: `${type}_LOADING`,
+                        payload,
+                        meta: omit(meta, 'fetch'),
+                    }),
                     put({ type: FETCH_START }),
                 ];
 
-                const aorAction = yield call(buildAorAction, action, parsedApolloQueryResult);
+                const aorAction = yield call(
+                    buildAorAction,
+                    action,
+                    parsedApolloQueryResult,
+                );
 
                 yield put(aorAction);
 
@@ -46,5 +62,8 @@ export const watchLocationChangeFactory = watchCrudActions =>
 export default observeQuery =>
     function* aorGraphQlSaga() {
         const watchCrudActions = watchCrudActionsFactory(observeQuery);
-        yield takeLatest(LOCATION_CHANGE, watchLocationChangeFactory(watchCrudActions));
+        yield takeLatest(
+            LOCATION_CHANGE,
+            watchLocationChangeFactory(watchCrudActions),
+        );
     };

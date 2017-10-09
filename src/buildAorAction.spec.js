@@ -12,7 +12,11 @@ describe('buildAorAction', () => {
 
         expect(
             buildAorAction(
-                { type: 'CRUD_GET_LIST', payload, meta: { fetch: restType, ...meta } },
+                {
+                    type: 'CRUD_GET_LIST',
+                    payload,
+                    meta: { fetch: restType, ...meta },
+                },
                 parsedApolloQueryResult,
             ),
         ).toEqual({
