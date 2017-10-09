@@ -1,10 +1,10 @@
-import expect, { createSpy } from 'expect';
+import expect from 'expect';
 import { END } from 'redux-saga';
 
 import queryObserver from './queryObserver';
 
 describe('queryObserver', () => {
-    const emitter = createSpy();
+    const emitter = jest.fn();
 
     it('calls emitter with END when calling complete', () => {
         queryObserver(emitter).complete();

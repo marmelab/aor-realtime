@@ -1,12 +1,12 @@
-import expect, { createSpy } from 'expect';
+import expect from 'expect';
 import { createSubscribeFactory } from './createObserverChannel';
 
 describe('createObserverChannel', () => {
-    const unsubscribe = createSpy();
-    const queryObserver = createSpy().andReturn({});
+    const unsubscribe = jest.fn();
+    const queryObserver = jest.fn(() => ({}));
     const emitter = 'the emitter';
     const watcher = {
-        subscribe: createSpy().andReturn({ unsubscribe }),
+        subscribe: jest.fn(() => ({ unsubscribe })),
     };
 
     const unsubscribeWatcher = createSubscribeFactory(queryObserver)(
